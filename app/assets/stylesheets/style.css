@@ -1,9 +1,26 @@
-li {
-  float: left;
+nav{
+  padding: 0;
+  top: 0;
+  overflow: hidden;
+  position: relative;
+  background-color: darkslategrey;
 }
-  
-a {
-  display: block;
-  padding: 20px;
-  background-color: #dddddd;
+nav h1{
+  float: left;
+  padding: 5px;
+  margin: 0;
+}
+li{ 
+  list-style-type: none;
+  margin-left: 2px;
+  padding: 5px;
+  float: right;
+  display: inline;
+}
+ul{
+  list-style-type: none;
+  margin: 5px;
+  padding: 0;
+  overflow: hidden;
+  float: left;
 }

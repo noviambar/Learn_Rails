@@ -1,0 +1,27 @@
+<h1>Articles</h1>
+
+<%= link_to "New Article", new_article_path %>
+<table border = "1">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Title</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @articles.each_with_index do |article, index| %>
+      <tr>
+        <td><%= index += 1 %></td>
+        <td><%= link_to article.title, article %></td>
+        <td>
+          <%= link_to "Show", article %>
+          <%= link_to "Edit", edit_article_path(article) %>
+          <%= link_to "Delete", article_path(article), data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you Sure ?"}%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
