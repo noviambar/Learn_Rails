@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   # #Menampilkan article berdasarkan id
   # get "articles/:id", to: "articles#show"
 
-  resources :articles
+  resources :articles do
+    resources :comments
+  end
 
 end
