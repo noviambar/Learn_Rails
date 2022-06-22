@@ -18,7 +18,6 @@ class ArticlesController < ApplicationController
     else
       @articles = Article.where("title LIKE ?","%" + params[:title] + "%")
     end
-      
   end
   
   #menampilkan article berdasarkan id
