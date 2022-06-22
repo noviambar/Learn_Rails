@@ -18,6 +18,12 @@
   <br>
 
   <div>
+    <label>Status</label><br>
+    <%= form.select :status, [['Publish', true], ['Unpublish', false]] %>
+  </div>
+  <br>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

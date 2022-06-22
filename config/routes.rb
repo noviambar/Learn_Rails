@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # #Menampilkan article berdasarkan id
   # get "articles/:id", to: "articles#show"
 
+  get '/search', to: "articles#search"
   resources :articles do
     resources :comments
   end
