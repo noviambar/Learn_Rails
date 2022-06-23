@@ -1,0 +1,43 @@
+<!-- menampilkan notice -->
+<% if notice %>
+  <p><%= notice %></p>
+<% end %>
+
+<h1>Register</h1>
+
+<!-- menampilkan pesan error -->
+
+
+<%= form_with model: @user, url: register_post_path do |form| %>
+    <div>
+      <label>Name</label><br>
+      <%= form.text_field :name %><br>
+    </div>
+    <br>
+    <div>
+      <label>Phone</label><br>
+      <%= form.text_field :phone %><br>
+    </div>
+    <br>
+    <div>
+      <label>Email</label><br>
+      <%= form.text_field :email %><br>
+    </div>
+    <br>
+    <div>
+      <label>Position</label><br>
+      <%= form.text_field :position %><br>
+    </div>
+    <br>
+    <div>
+      <label>Password</label><br>
+      <%= form.text_field :password %><br>
+    </div>
+    <br>
+    <div>
+      <%= form.submit 'Register' %>
+      <p>Already have an account ? <%= link_to 'login', form_login_path %></p>
+    </div>
+    <br>
+<% end %>
+

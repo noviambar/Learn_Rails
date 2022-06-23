@@ -1,0 +1,20 @@
+<!-- menampilkan notice -->
+<% if notice %>
+    <p><%= notice %></p>
+<% end %>
+
+<h1>Login</h1>
+
+<!-- menampilkan pesan alert -->
+<% if alert %>
+    <p><%= alert %></p>
+<% end %>
+
+<!-- menampilkan form login -->
+<%= form_with controller: :auth, action: :login, local: true do %>
+  <%= text_field_tag :email, '', placeholder: 'Email' %> <br><br>
+  <%= password_field_tag :password, '', placeholder: 'Password' %> <br><br>
+  
+  <%= submit_tag 'Login' %> <br>
+  <p>Don't have an account ? <%= link_to 'register', form_register_path %></p>
+<% end %>

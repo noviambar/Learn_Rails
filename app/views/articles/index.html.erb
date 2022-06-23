@@ -1,5 +1,9 @@
 <h1>Articles</h1>
 
+<% if notice %>
+    <p><%= notice %></p>
+<% end %>
+
 <%= link_to "New Article", new_article_path %>
 <br><br>
 
@@ -43,3 +47,6 @@
     <% end %>
   </tbody>
 </table>
+<br>
+
+<%= link_to 'Logout', user_logout_path(current_user), method: :delete %>

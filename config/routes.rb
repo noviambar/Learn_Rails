@@ -1,17 +1,21 @@
 Rails.application.routes.draw do
+
+  #halaman utama
   get 'articles/index'
   root "articles#index"
-  # get 'articles/index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  #register
+  get '/register', to: 'auth#form_register', as: 'form_register'
+  post '/register', to: 'auth#register', as: 'register_post'
 
-  # get "/articles", to: "articles#index"
-  # #Menampilkan article berdasarkan id
-  # get "articles/:id", to: "articles#show"
+  #login
+  get '/login', to: 'auth#form_login', as: 'form_login'
+  post '/login', to: 'auth#login', as: 'login_post'
 
-  get '/search', to: "articles#search"
+  # logout
+  delete '/logout/:id', to: 'auth#logout', as: 'user_logout'
+
+  #articles
   resources :articles do
     resources :comments
   end
