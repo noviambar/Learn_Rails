@@ -1,23 +1,8 @@
 class ArticlesController < ApplicationController
+  
   #menampilkan semua article
   def index
-    @articles = Article.all
-    
-  end
-  
-  #search by name
-  def search
-    # @articles = Article.where("title LIKE ?","%" + params[:title] + "%")
-    # @articles = Article.where('status LIKE ?', true)
-    if params[:status] == "true"
-      @articles = Article.where("title LIKE ?","%" + params[:title] + "%")
-      @articles = Article.where('status LIKE ?', true)
-    elsif params[:status] == "false"
-      @articles = Article.where("title LIKE ?","%" + params[:title] + "%")
-      @articles = Article.where('status LIKE ?', false)
-    else
-      @articles = Article.where("title LIKE ?","%" + params[:title] + "%")
-    end
+      @articles = Article.search(params)
   end
   
   #menampilkan article berdasarkan id

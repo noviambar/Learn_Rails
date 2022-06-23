@@ -3,21 +3,11 @@
 <%= link_to "New Article", new_article_path %>
 <br><br>
 
-<%# <form action="/search">
-  <input name="title" type="text" placeholder="Search by Title">
-  <input class="input-dropdown">
-  <select class="input-dropdown">
-    <option value="true" >Publish</option>
-    <option value="false" >Unpublish</option>
-  </select>
-  <button type="submit">Search</button>
-</form>
-<br> %>
-
-<%= form_with(url: '/search', method: 'get') do |form| %>
-  <%= form.text_field :title %>
-  <%= form.select :status, options_for_select([['None'],["Publish", true], ["Unpublish", false]]) %>
-  <%= form.submit 'Search' %>
+<%# Melakukan pencarian berdasarkan title dan berdasarkan status %>
+<%= form_tag(articles_path, method: 'get') do %>
+  <%= text_field_tag(:title, params[:title]) %>
+  <%= select_tag :status, options_for_select([['None'],["Publish", true], ["Unpublish", false]]) %>
+  <%= submit_tag 'Search' %>
 <% end %>
 <br>
 

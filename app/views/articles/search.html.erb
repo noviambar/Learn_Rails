@@ -12,22 +12,22 @@
     </tr>
   </thead>
   <tbody>
-    <% @articles.each_with_index do |article, index| %>
+    <% @articles.each_with_index do |blog, index| %>
       <% if article.title? %>
         <tr>
           <td><%= index += 1 %></td>
-          <td><%= link_to article.title, article %></td>
+          <td><%= link_to blog.title, blog %></td>
           <td>
-            <% if article.status? %>
+            <% if blog.status? %>
               Publish
             <% else %>
               Unpublish
             <% end %>
           </td>
           <td>
-            <%= link_to "Show", article %>
-            <%= link_to "Edit", edit_article_path(article) %>
-            <%= link_to "Delete", article_path(article), data: {
+            <%= link_to "Show", blog %>
+            <%= link_to "Edit", edit_article_path(blog) %>
+            <%= link_to "Delete", article_path(blog), data: {
             turbo_method: :delete,
             turbo_confirm: "Are you Sure ?"}%>
           </td>
