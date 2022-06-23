@@ -1,3 +1,5 @@
+<div class="container-fluid">
+  <%= render "layouts/navbar" %>
 <h1>Articles</h1>
 
 <% if notice %>
@@ -11,11 +13,11 @@
 <%= form_tag(articles_path, method: 'get') do %>
   <%= text_field_tag(:title, params[:title]) %>
   <%= select_tag :status, options_for_select([['None'],["Publish", true], ["Unpublish", false]]) %>
-  <%= submit_tag 'Search' %>
+  <button type="submit" class="btn btn-success">Search</button>
 <% end %>
 <br>
 
-<table border = "1">
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>No</th>
@@ -50,3 +52,4 @@
 <br>
 
 <%= link_to 'Logout', user_logout_path(current_user), method: :delete %>
+</div>

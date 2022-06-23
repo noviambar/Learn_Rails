@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   post '/register', to: 'auth#register', as: 'register_post'
 
   #login
-  get '/login', to: 'auth#form_login', as: 'form_login'
-  post '/login', to: 'auth#login', as: 'login_post'
+  get '/Login', to: 'auth#form_login', as: 'form_login'
+  post '/Login', to: 'auth#login', as: 'login_post'
 
   # logout
   delete '/logout/:id', to: 'auth#logout', as: 'user_logout'

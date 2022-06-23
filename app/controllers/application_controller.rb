@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
 
+  layout 'dashboard'
+
   #mencari user berdasarkan session key
   def current_user
     if session[:user_id]
