@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     
     if @article.update(article_params)
-      redirect_to @article, notice: 'Successfully Updated Article'
+      redirect_to @article, flash: { notice: 'Successfully Updated Article' }
     else
       render :edit, status: :unprocessable_entity
     end

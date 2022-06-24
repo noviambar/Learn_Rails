@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     if current_user
       true
     else
-      redirect_to form_login_path, alert: "Silahkan login terlebih dahulu!"
+      redirect_to form_login_path, flash: { alert: "Please Login!" }
       return false
     end
   end

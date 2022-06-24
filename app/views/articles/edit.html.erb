@@ -1,5 +1,4 @@
-<h1>Edit Article</h1>
-
-<%= render "form", article: @article %>
-
-<p><%= link_to "Back", root_path %></p>
+<%= render "layouts/navbar" %>
+<div class="container-fluid">  
+  <%= render "form" , article: @article %>
+</div>

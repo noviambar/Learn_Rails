@@ -1,6 +1,4 @@
-<div class="container-fluid">
-  <h1>New Article</h1>
-  
-  <p><%= link_to "Back", root_path %></p>
+<%= render "layouts/navbar" %>
+<div class="container-fluid">  
   <%= render "form" , article: @article %>
 </div>

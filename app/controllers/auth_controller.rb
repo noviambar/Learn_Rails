@@ -5,9 +5,12 @@ class AuthController < ApplicationController
 
   def register
     @user = User.new(user_params)
-    if @user.save
-      redirect_to form_login_path, notice: "Successfully created account"
+
+    if @user.valid?
+      @user.save
+      redirect_to form_login_path, flash: { notice: "Successfully created account"}
     else
+      flash.now[:messages] = @user.errors.full_messages[0]
       render :form_register
     end
   end
@@ -24,18 +27,18 @@ class AuthController < ApplicationController
       if user.authenticate(password)
         # membuat session dengan key = :user_id
         session[:user_id] = user.id
-        redirect_to articles_path, notice: "Welcome #{user.name}"
+        redirect_to articles_path, flash: { notice: "Welcome #{user.name}" }
       else
-        redirect_to form_login_path, alert: "Email or Password Incorrect"
+        redirect_to form_login_path, flash: {alert: "Email or Password Incorrect!"}
       end
     else
-      redirect_to form_login_path, alert: "Email or Password Incorrect!"
+      redirect_to form_login_path, flash: {alert: "Email or Password Incorrect!"}
     end
   end
 
   def logout
     session[:user_id] = nil
-    redirect_to form_login_path, notice: "Logout Succesfully"
+    redirect_to form_login_path, flash: { notice: "Logout Successfully"}
   end
 
   private
