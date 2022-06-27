@@ -1,0 +1,32 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @articles.each_with_index do |article, index| %>
+        <tr>
+          <td><%= index += 1 %></td>
+          <td><%= link_to article.title, article %></td>
+          <td>
+            <% if article.status? %>
+              Publish
+            <% else %>
+              Unpublish
+            <% end %>
+          </td>
+          <td>
+            <%= link_to "Show", article %>
+            <%= link_to "Edit", edit_article_path(article) %>
+            <%= link_to "Delete", article_path(article), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you Sure ?"}%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

@@ -1,7 +1,7 @@
 <%= form_with model: [@article, @article.comments.build] do |form| %>
   <div class="form-outline mb-4">
     <label class="form-label" for="commenter">Commenter</label>
-    <%= form.text_field :commenter, class: 'form-control' %>
+    <%= form.text_field :commenter, class: 'form-control'%>
   <div>
   <div class="form-outline mb-4">
     <label class="form-label" for="body">Comment</label>

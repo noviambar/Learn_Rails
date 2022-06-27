@@ -6,6 +6,7 @@ class ArticlesController < ApplicationController
   #menampilkan semua article
   def index
       @articles = Article.search(params)
+      @article = Article.new
   end
   
   #menampilkan article berdasarkan id
@@ -21,11 +22,18 @@ class ArticlesController < ApplicationController
   #membuat article baru
   def create 
     @article = Article.new(article_params)
-  
-    if @article.save
-      redirect_to @article
-    else
-      render :new, status: :unprocessable_entity
+    
+    respond_to do |format|
+      if @article.save
+        format.html {redirect_to root_path(@article), notice: 'Article successfuly created'}
+        format.js
+        format.json { render json: @article, status: :created, location: @article}
+        # redirect_to @article
+      else
+        format.html{ render action: "new"}
+        format.json {render json: @article.errors, status: unprocessable_entity}
+        # render :new, status: :unprocessable_entity
+      end
     end
   end
   
