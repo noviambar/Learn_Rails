@@ -17,6 +17,7 @@ class ArticlesController < ApplicationController
   #membuat form tambah article
   def new
     @article = Article.new
+    @users = User.pluck(:name, :id)
   end
   
   #membuat article baru
@@ -66,6 +67,6 @@ class ArticlesController < ApplicationController
   
   private
     def article_params
-      params.require(:article).permit(:title, :body, :status)
+      params.require(:article).permit(:user_id, :title, :body, :status)
     end
 end

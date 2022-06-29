@@ -1,18 +1,18 @@
 class AuthController < ApplicationController
 
   def index
-    @users = User.all
+    @users = User.joins(:role)
   end
 
   def form_register
     @user = User.new
+    @users = Role.pluck(:name, :id)
   end
 
   def register
     @user = User.new(user_params)
-
-    if @user.valid?
-      @user.save
+    
+    if @user.save
       redirect_to form_login_path, flash: { notice: "Successfully created account"}
     else
       flash.now[:messages] = @user.errors.full_messages[0]
@@ -48,6 +48,6 @@ class AuthController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :phone, :email, :position, :password)
+    params.require(:user).permit(:name, :phone, :email, :role_id, :password)
   end
 end

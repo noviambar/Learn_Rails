@@ -13,7 +13,11 @@ Rails.application.routes.draw do
   post '/Login', to: 'auth#login', as: 'login_post'
 
   resources :auth
-  
+
+  #create role
+  get '/role', to: 'role#form_role', as: 'form_role'
+  post '/role', to: 'role#create', as: 'create_post'
+
   # logout
   delete '/logout/:id', to: 'auth#logout', as: 'user_logout'
 

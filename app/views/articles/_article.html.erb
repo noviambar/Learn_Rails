@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>No</th>
+      <th>Author</th>
       <th>Title</th>
       <th>Status</th>
       <th>Action</th>
@@ -11,6 +12,7 @@
     <% @articles.each_with_index do |article, index| %>
       <tr>
         <td><%= index += 1 %></td>
+        <td><%= article.user_id %></td>
         <td><%= link_to article.title, article %></td>
         <td>
           <% if article.status === "true" %>

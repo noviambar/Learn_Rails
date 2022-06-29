@@ -1,6 +1,6 @@
 class User < ApplicationRecord
+  belongs_to :role
   has_many :article
-  has_one :role
 
   validates :name, presence: true
   validates :phone, presence: true, numericality: true

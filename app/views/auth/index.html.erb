@@ -2,7 +2,17 @@
 <%= render "layouts/navbar" %>
   <div class="card">
     <div class="card-header">
-      <h2>User</h2>
+    <ul>
+      <li>
+        <%= link_to 'Create Role', form_role_path ,class: 'btn btn-outline-success' %>
+      </li>
+      <li>
+        <%= link_to 'Add User', form_register_path ,class: 'btn btn-outline-success'%>
+      </li>
+      <li>
+        <h2>User</h2>
+      </li>
+    </ul>
     </div>
     <div class="card-body">
       <table class="table table-striped">
@@ -19,7 +29,7 @@
           <tr>
             <td><%= index+=1 %></td>
             <td><%= user.name %></td>
-            <td><%= user.email %></td>
+            <td><%= user.role_id %></td>
             <td>Show | Edit | Delete <td>
           </tr>
         <% end %>
