@@ -1,7 +1,0 @@
-$(".article").html("<%= j render 'article', article: @article %>")
-alert("success")
-<% flash.each do |key, value| %>
-  <div class="alert <%= flash_class(key) %> alert-dismissible fade show text-center" role="alert">
-    <strong><%= value %></strong>
-  </div>
-<% end %>

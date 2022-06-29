@@ -1,0 +1,30 @@
+<div class="container-fluid">
+<%= render "layouts/navbar" %>
+  <div class="card">
+    <div class="card-header">
+      <h2>User</h2>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @users.each_with_index do |user, index| %>
+          <tr>
+            <td><%= index+=1 %></td>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td>Show | Edit | Delete <td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

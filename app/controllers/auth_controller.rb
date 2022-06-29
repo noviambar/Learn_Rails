@@ -1,4 +1,9 @@
 class AuthController < ApplicationController
+
+  def index
+    @users = User.all
+  end
+
   def form_register
     @user = User.new
   end
