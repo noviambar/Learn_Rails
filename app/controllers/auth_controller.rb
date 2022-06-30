@@ -2,20 +2,46 @@ class AuthController < ApplicationController
 
   def index
     @users = User.joins(:role)
+    # @user = User.new
   end
 
-  def new
-    @user = new
+  def form_user
+    @user = User.new
+    @users = Role.pluck(:name, :id)
   end
 
-  def create
-    @user = new(user_params)
+  def user
+    @user = User.new(user_params)
 
-    if @user.save
-      redirect_to auth_path, flash: { notice: "Successfully created account"}
+    respond_to do |format|
+      if @user.save
+        @users = User.all
+        format.turbo_stream
+        format.html {redirect_to auth_path(@user), notice: 'Article successfuly created'}
+        
+        # format.html {redirect_to root_path(@article), notice: 'Article successfuly created'}
+        # format.js       
+        # redirect_to @article
+      else
+        format.html{ render action: "new", status: :unprocessable_entity}
+        # render :new, status: :unprocessable_entity
+      end
+    end
+  end
+
+  #create form edit user
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  #update user
+  def update
+    @user = User.find(params[:id])
+    
+    if @user.update(user_params)
+      redirect_to @user, flash: { notice: 'Successfully Updated User' }
     else
-      flash.now[:messages] = @user.errors.full_messages[0]
-      render :new
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -63,6 +89,7 @@ class AuthController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :phone, :email, :role_id, :password)
+    params.require(:user).permit(:name, :phone, :email, :role_id, :password, 
+      roles_attributes: [:id, :name, :_destroy])
   end
 end

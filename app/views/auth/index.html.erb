@@ -7,34 +7,15 @@
         <%= link_to 'Create Role', form_role_path ,class: 'btn btn-outline-success' %>
       </li>
       <li>
-        <%= link_to 'Add User', form_register_path,class: 'btn btn-outline-success'%>
+        <%= link_to 'Add User', form_user_path,class: 'btn btn-outline-success', data: { turbo_frame: 'modal' } %>
       </li>
       <li>
         <h2>User</h2>
       </li>
     </ul>
     </div>
-    <div class="card-body">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Role</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @users.each_with_index do |user, index| %>
-          <tr>
-            <td><%= index+=1 %></td>
-            <td><%= user.name %></td>
-            <td><%= user.role.name %></td>
-            <td>Show | Edit | Delete <td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
+    <div class="card-body" id="users">
+      <%= render 'auth/user' %>
     </div>
   </div>
 </div>
