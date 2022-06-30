@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
 
   #menampilkan semua article
   def index
-      @articles = Article.search(params)
+      @articles = Article.search(params).joins(:user)
       @article = Article.new
   end
   

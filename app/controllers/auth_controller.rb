@@ -4,6 +4,21 @@ class AuthController < ApplicationController
     @users = User.joins(:role)
   end
 
+  def new
+    @user = new
+  end
+
+  def create
+    @user = new(user_params)
+
+    if @user.save
+      redirect_to auth_path, flash: { notice: "Successfully created account"}
+    else
+      flash.now[:messages] = @user.errors.full_messages[0]
+      render :new
+    end
+  end
+
   def form_register
     @user = User.new
     @users = Role.pluck(:name, :id)

@@ -7,7 +7,7 @@
         <%= link_to 'Create Role', form_role_path ,class: 'btn btn-outline-success' %>
       </li>
       <li>
-        <%= link_to 'Add User', form_register_path ,class: 'btn btn-outline-success'%>
+        <%= link_to 'Add User', form_register_path,class: 'btn btn-outline-success'%>
       </li>
       <li>
         <h2>User</h2>
@@ -29,7 +29,7 @@
           <tr>
             <td><%= index+=1 %></td>
             <td><%= user.name %></td>
-            <td><%= user.role_id %></td>
+            <td><%= user.role.name %></td>
             <td>Show | Edit | Delete <td>
           </tr>
         <% end %>
@@ -38,3 +38,4 @@
     </div>
   </div>
 </div>
+

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :auth
 
-  #create role
+  #create role    
   get '/role', to: 'role#form_role', as: 'form_role'
   post '/role', to: 'role#create', as: 'create_post'
 
