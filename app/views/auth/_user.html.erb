@@ -1,20 +1,20 @@
 <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Role</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @users.each_with_index do |user, index| %>
-          <tr>
-            <td><%= index+=1 %></td>
-            <td><%= user.name %></td>
-            <td><%= user.role.name %></td>
-            <td>Show | Edit | Delete <td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Name</th>
+      <th>Role</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each_with_index do |user, index| %>
+     <tr>
+      <td><%= index+=1 %></td>
+      <td><%= user.name %></td>
+      <td></td>
+      <td>Show | Edit | Delete <td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

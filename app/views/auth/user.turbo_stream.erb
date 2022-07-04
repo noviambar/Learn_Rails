@@ -1,6 +1,3 @@
 <%= turbo_stream.update "users" do %>
   <%= render @user, user: @users %>
 <% end %>
-<%= turbo_stream.prepend "roles" do %>
-  <%= render 'auth/role_fields', form: f %>
-<% end %>

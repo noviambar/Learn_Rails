@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_29_060849) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_01_030428) do
   create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -35,6 +35,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_060849) do
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "fk_rails_ab35d699f0"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -50,5 +52,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_060849) do
 
   add_foreign_key "articles", "users"
   add_foreign_key "comments", "articles"
+  add_foreign_key "roles", "users"
   add_foreign_key "users", "roles"
 end

@@ -24,11 +24,12 @@ class ArticlesController < ApplicationController
   def create 
     @article = Article.new(article_params)
 
+    debugger
     respond_to do |format|
       if @article.save
         @articles = Article.all
         format.turbo_stream
-        format.html {redirect_to article_path(@article), notice: 'Article successfuly created'}
+        format.html {redirect_to root_path(@article), notice: 'Article successfuly created'}
         
         # format.html {redirect_to root_path(@article), notice: 'Article successfuly created'}
         # format.js       

@@ -1,5 +1,4 @@
 <%= turbo_stream.update "articles" do %>
-  alert("success")
   <%= render 'article', article: @articles %>
 <% end %>
 <%= turbo_stream.replace "#{dom_id(Article.new)}_form" do %>
