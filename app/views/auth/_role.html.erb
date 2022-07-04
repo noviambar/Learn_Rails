@@ -1,2 +1,4 @@
-<%= link_to 'Delete','#', class: 'remove_record'%>
-<%= f.collection_select :id, Role.all, :id, :name %>
+<br><br>
+  <%= f.text_field :_destroy, type: 'hidden' %>
+  <%= link_to_remove_fields "Remove", "#", class: "remove_fields" %>
+  <%= f.collection_select :id, Role.all, :id, :name %>

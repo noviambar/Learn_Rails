@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # belongs_to :role
   has_many :articles
-  has_many :roles
+  has_many :roles, dependent: :destroy
   accepts_nested_attributes_for :roles, allow_destroy: true
 
   validates :name, presence: true

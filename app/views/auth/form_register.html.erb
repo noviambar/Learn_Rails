@@ -38,11 +38,14 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="role_id">Your Position</label><br>
-                      <%= f.fields_for :roles do |builder| %>
-                        <%= render 'role', f: builder %>
-                      <% end %>
-                      <%= link_to_add_row('Add Role', f, :roles) %>
+                      <label class="form-label" for="role_id">Your Position</label>
+                        <%= render 'role', f: f%>
+                        <%= link_to_add_row('Add Role', f, :roles) %><br>
+                        <div>
+                          <%= f.fields_for :roles do |builder| %>
+                            <%= render 'role', f: builder %>
+                          <% end %>
+                        </div>
                     </div>
                   </div>
                   
@@ -75,5 +78,10 @@ function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g");
   $(link).parent().append(content.replace(regexp, new_id));
+}
+function remove_fields(link, association, content) {
+    $(link).prev("input[type=hidden]").val("5");
+    $(link).closest("div").hide();
+    return event.preventDefault();
 }
 </script>

@@ -18,9 +18,15 @@ $(document).on("turbolinks:load", function () {
     $(link).parent().append(content.replace(regexp, new_id));
   }
 
+  function remove_fields(link, association, content) {
+    $(link).prev("input[type=hidden]").val("1");
+    $(link).closest("nested_form").hide();
+    return event.preventDefault();
+  }
+
   $("form").on("click", ".remove_record", function (event) {
     $(this).prev("input[type=hidden]").val("1");
-    $(this).closest("div").hide();
+    $(this).closest("nested-form").hide();
     return event.preventDefault();
   });
 
