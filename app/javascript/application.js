@@ -9,14 +9,15 @@ import "controllers";
 
 $(document).ready(function () {
   // alert("tes");
+});
+
+$(document).on("turbolinks:load", function () {
   function add_fields(link, association, content) {
     var new_id = new Date().getTime();
     var regexp = new RegExp("new_" + association, "g");
     $(link).parent().append(content.replace(regexp, new_id));
   }
-});
 
-$(document).on("turbolinks:load", function () {
   $("form").on("click", ".remove_record", function (event) {
     $(this).prev("input[type=hidden]").val("1");
     $(this).closest("div").hide();
