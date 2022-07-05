@@ -24,7 +24,7 @@ class ArticlesController < ApplicationController
   def create 
     @article = Article.new(article_params)
 
-    debugger
+    # debugger
     respond_to do |format|
       if @article.save
         @articles = Article.all

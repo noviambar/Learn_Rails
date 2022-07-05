@@ -4,10 +4,17 @@
     <div class="card-header">
     <ul>
       <li>
+        <% flash.each do |key, value| %>
+          <div class="alert <%= flash_class(key) %> alert-dismissible fade show text-center" role="alert">
+            <strong><%= value %></strong>
+          </div>
+        <% end %>
+      </li>
+      <li>
         <%= link_to 'Create Role', form_role_path ,class: 'btn btn-outline-success' %>
       </li>
       <li>
-        <%= link_to 'Add User', form_register_path, class: 'btn btn-outline-success' %>
+        <%= link_to 'Add User', new_profiles_path, class: 'btn btn-outline-success' %>
       </li>
       <li>
         <h2>User</h2>
@@ -15,7 +22,7 @@
     </ul>
     </div>
     <div class="card-body" id="users">
-      <%= render 'auth/user' %>
+      <%= render 'user' %>
     </div>
   </div>
 </div>

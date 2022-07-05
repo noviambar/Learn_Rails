@@ -1,4 +1,6 @@
-<br><br>
+<fieldset>
+  <br>
   <%= f.text_field :_destroy, type: 'hidden' %>
   <%= link_to_remove_fields "Remove", "#", class: "remove_fields" %>
-  <%= f.collection_select :id, Role.all, :id, :name %>
+  <%= f.collection_select :name, Role.all, :id, :name ,selected: nil%>
+</fieldset>
