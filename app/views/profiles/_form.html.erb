@@ -7,7 +7,6 @@
         <div class="card text-black" style="border-radius: 25px;">
           <div class="card-body p-md-5">
             <div class="row justify-content-center">
-              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Create User</p>
                 <% flash.each do |key, value| %>
                   <div class="alert <%= flash_class(key) %> alert-dismissible fade show text-center" role="alert">
@@ -17,28 +16,38 @@
                 <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="name">Your Name</label><br>
+                      <label class="form-label" for="name">Name</label><br>
                       <%= f.text_field :name, class: "form-control" %>
                     </div>
                   </div>
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="phone">Your Phone</label><br>
+                      <label class="form-label" for="mobile">Phone</label><br>
                       <%= f.text_field :mobile, class: "form-control" %>
                     </div>
                   </div>
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="email">Your Email</label><br>
+                      <label class="form-label" for="email">Email</label><br>
                       <%= f.text_field :email, class: "form-control" %>
                     </div>
                   </div>
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="role_id">Your Position</label><br>  
+                      <label class="form-label" for="email">Social Media</label>
+                      <%= f.fields_for :socials do |form| %>
+                        <%= render 'social', f: form %>
+                      <% end %><br>
+                      <%= link_to_add_row('Add Social', f, :socials)%>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <label class="form-label" for="role_id">Position</label><br>  
                         <%= f.select :role_id, @roles %>
                     </div>
                   </div>
@@ -52,7 +61,6 @@
                   </div>
                   
                   <button class="btn btn-primary btn-lg btn-block" type="submit">Add</button>
-              </div>
             </div>
           </div>
         </div>
@@ -61,3 +69,18 @@
   </div>
 </section>
 <% end %>
+
+<script>
+  function add_fields(link, association, content) {
+    var new_id = new Date().getTime();
+    var regexp = new RegExp("new_" + association, "g");
+    $(link).before().parent().append(content.replace(regexp, new_id));
+    return event.preventDefault()
+  }
+
+  function remove_fields(link, association, content) {
+    $(link).prev("input[type=hidden]").val();
+    $(link).closest("fieldset").hide();
+    return event.preventDefault();
+  }
+</script>

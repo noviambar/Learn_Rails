@@ -34,7 +34,7 @@ module ApplicationHelper
 
   def link_to_remove_fields(name, f, removal_class)
     # link_to name, "javascript:void(0);", onclick: "remove_fields(this, #{removal_class})"
-    link_to_function(name, "remove_fields(this)", class: 'remove_fields', remote: true)
+    link_to_function(name, "remove_fields(this)", class: 'btn btn-danger remove_fields', remote: true)
   end
 
   #===========================================================================================================

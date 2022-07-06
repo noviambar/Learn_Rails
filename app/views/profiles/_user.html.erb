@@ -4,16 +4,24 @@
       <th>No</th>
       <th>Name</th>
       <th>Role</th>
+      <th>Social Media</th>
       <th>Action</th>
     </tr>
   </thead>
   <tbody>
-    <% @profiles.each_with_index do |user, index| %>
+    <% @profiles.each_with_index do |profile, index| %>
      <tr>
       <td><%= index+=1 %></td>
-      <td><%= user.name %></td>
-      <td><%= user.role.name %></td>
-      <td>Show | Edit | Delete <td>
+      <td><%= profile.name %></td>
+      <td><%= profile.role.name %></td>
+      <td>
+        <% @profile.socials.each do |social| %>
+          <%= social.name %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to "Show", profile_path(profile) %>
+      <td>
     </tr>
     <% end %>
   </tbody>

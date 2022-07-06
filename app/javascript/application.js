@@ -1,6 +1,7 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails";
 import "controllers";
+import "@fortawesome/fontawesome-free"; // => https://ga.jspm.io/npm:@fortawesome/fontawesome-free@6.1.1/js/all.js
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
@@ -19,16 +20,16 @@ $(document).on("turbolinks:load", function () {
   }
 
   function remove_fields(link, association, content) {
-    $(link).prev("input[type=hidden]").val("1");
-    $(link).closest("nested_form").hide();
+    $(link).prev("input[type=hidden]").val();
+    $(link).closest("fieldset").hide();
     return event.preventDefault();
   }
 
-  $("form").on("click", ".remove_record", function (event) {
-    $(this).prev("input[type=hidden]").val("1");
-    $(this).closest("nested-form").hide();
-    return event.preventDefault();
-  });
+  // $("form").on("click", ".remove_record", function (event) {
+  //   $(this).prev("input[type=hidden]").val();
+  //   $(this).closest("fieldset").hide();
+  //   return event.preventDefault();
+  // });
 
   // $(".add_fields").on("click", function (event) {
   //   console.log("test");

@@ -33,6 +33,9 @@ gem "jbuilder"
 #use turbolink
 gem "turbolinks", "~> 5.2.1"
 
+#use fontawesom
+gem 'font_awesome5_rails'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

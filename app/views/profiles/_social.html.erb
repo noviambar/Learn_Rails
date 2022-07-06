@@ -1,0 +1,14 @@
+<fieldset>
+  <div class="row">
+    <div class="col">
+      <%= f.text_field :_destroy, type: 'hidden' %>
+      <label class="form-label" for="name">Username</label><br>
+      <%= f.text_field :name, placeholder: 'Username', class: 'form-control'%>
+    </div>
+    <div class="col">
+      <label class="form-label" for="short">Name Social Media</label><br>
+      <%= f.text_field :short, placeholder: 'Name Social Media', class: 'form-control'%>
+    </div>
+  </div><br>
+    <%= link_to_remove_fields "Remove", "#", class: "remove_fields"%>
+</fieldset>

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   delete '/logout/:id', to: 'auth#logout', as: 'user_logout'
 
   #profile
-  resource :profiles
+  resources :profiles
 
   #articles
   resources :articles do

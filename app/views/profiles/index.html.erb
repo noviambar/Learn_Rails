@@ -1,0 +1,29 @@
+<div class="container-fluid">
+<%= render "layouts/navbar" %>
+  <div class="card">
+    <div class="card-header">
+    <ul>
+      <li>
+        <% flash.each do |key, value| %>
+          <div class="alert <%= flash_class(key) %> alert-dismissible fade show text-center" role="alert">
+            <strong><%= value %></strong>
+          </div>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to 'Create Role', form_role_path ,class: 'btn btn-outline-success' %>
+      </li>
+      <li>
+        <%= link_to 'Add User', new_profile_path, class: 'btn btn-outline-success' %>
+      </li>
+      <li>
+        <h2>User</h2>
+      </li>
+    </ul>
+    </div>
+    <div class="card-body" id="users">
+      <%= render 'user' %>
+    </div>
+  </div>
+</div>
+
