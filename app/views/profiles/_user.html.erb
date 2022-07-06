@@ -18,12 +18,15 @@
       <td> 
       <% @profile.each do |social| %>
         <% if profile.id == social.user_id %>
-          <%= social.short %>
+          <%= social.short %>,
         <% end %>
       <% end %>
       </td>
       <td>
         <%= link_to "Show", profile_path(profile) %>
+        <%= link_to "Edit", edit_profile_path(profile)%>
+        <%= link_to "Delete", profile_path(profile), data: {turbo_method: :delete,
+            turbo_confirm: "Are you Sure ?"}%>
       <td>
     </tr>
     <% end %>

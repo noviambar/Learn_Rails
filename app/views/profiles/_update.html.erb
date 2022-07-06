@@ -1,5 +1,5 @@
 <!-- menampilkan form register -->
-<%= form_with(model: @profile, url: {action: "create"}, data: { turbo: false }) do |f| %>
+<%= form_with(model: @profile, url: {action: "update"}, data: { turbo: false }) do |f| %>
 <section class="vh-300" style="background-color: #eee;">
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -7,7 +7,7 @@
         <div class="card text-black" style="border-radius: 25px;">
           <div class="card-body p-md-5">
             <div class="row justify-content-center">
-                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Create User</p>
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Edit User</p>
                 <% flash.each do |key, value| %>
                   <div class="alert <%= flash_class(key) %> alert-dismissible fade show text-center" role="alert">
                     <strong><%= value %></strong>
@@ -74,7 +74,7 @@
   function add_fields(link, association, content) {
     var new_id = new Date().getTime();
     var regexp = new RegExp("new_" + association, "g");
-    $(link).parent().before(content.replace(regexp, new_id));
+    $(link).before().parent().append(content.replace(regexp, new_id));
     return event.preventDefault()
   }
 
