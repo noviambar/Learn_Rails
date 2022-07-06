@@ -1,3 +1,4 @@
+<%= paginate @paginates, inner_window: 3%>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -14,10 +15,12 @@
       <td><%= index+=1 %></td>
       <td><%= profile.name %></td>
       <td><%= profile.role.name %></td>
-      <td>
-        <% @profile.socials.each do |social| %>
-          <%= social.name %>
+      <td> 
+      <% @profile.each do |social| %>
+        <% if profile.id == social.user_id %>
+          <%= social.short %>
         <% end %>
+      <% end %>
       </td>
       <td>
         <%= link_to "Show", profile_path(profile) %>

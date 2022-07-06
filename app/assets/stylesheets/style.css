@@ -3,7 +3,7 @@ nav{
   top: 0;
   overflow: hidden;
   position: relative;
-  background-color: darkslategrey;
+  background-color: rgb(255, 255, 255);
 }
 nav h1{
   float: left;
