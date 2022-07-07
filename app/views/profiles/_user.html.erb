@@ -23,10 +23,15 @@
       <% end %>
       </td>
       <td>
-        <%= link_to "Show", profile_path(profile) %>
-        <%= link_to "Edit", edit_profile_path(profile)%>
-        <%= link_to "Delete", profile_path(profile), data: {turbo_method: :delete,
+        <% if current_user.id == profile.id %>
+          <%= link_to "Show", profile_path(profile) %>
+          <%= link_to "Edit", edit_profile_path(profile)%>
+        <% else %>
+          <%= link_to "Show", profile_path(profile) %>
+          <%= link_to "Edit", edit_profile_path(profile)%>
+          <%= link_to "Delete", profile_path(profile), data: {turbo_method: :delete,
             turbo_confirm: "Are you Sure ?"}%>
+        <% end %>
       <td>
     </tr>
     <% end %>
