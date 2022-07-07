@@ -37,7 +37,8 @@
                   <div class="form-outline flex-fill mb-0">
                     <label class="form-label" for="user_id">Author</label>
                       <% if current_user %>
-                        <%= form.text_field :user_id, class: 'form-control', value: current_user.id %>
+                        <%= form.text_field :user_id, class: 'form-control', value: current_user.id, type: 'hidden'%>
+                        <%= form.text_field :user_id, class: 'form-control', value: current_user.name, disabled: true %>
                       <% end %>
 											<% @article.errors.full_messages_for(:title).each do |message| %>
 												<div><%= message %></div>

@@ -1,81 +1,68 @@
-<!-- menampilkan form register -->
 <%= form_with(model: @profile, url: {action: "update"}, data: { turbo: false }) do |f| %>
-<section class="vh-300" style="background-color: #eee;">
-  <div class="container h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-12 col-xl-11">
-        <div class="card text-black" style="border-radius: 25px;">
-          <div class="card-body p-md-5">
-            <div class="row justify-content-center">
+  <section class="vh-300" style="background-color: #eee;">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-12 col-xl-11">
+          <div class="card text-black" style="border-radius: 25px;">
+            <div class="card-body p-md-5">
+              <div class="row justify-content-center">
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Edit User</p>
                 <% flash.each do |key, value| %>
                   <div class="alert <%= flash_class(key) %> alert-dismissible fade show text-center" role="alert">
                     <strong><%= value %></strong>
                   </div>
                 <% end %>
-                <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="name">Name</label><br>
-                      <%= f.text_field :name, class: "form-control" %>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="mobile">Phone</label><br>
-                      <%= f.text_field :mobile, class: "form-control" %>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="email">Email</label><br>
-                      <%= f.text_field :email, class: "form-control" %>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="email">Social Media</label>
-                      <%= f.fields_for :socials do |form| %>
-                        <%= render 'social', f: form %>
-                      <% end %><br>
-                      <%= link_to_add_row('Add Social', f, :socials)%>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="role_id">Position</label><br>  
-                        <%= f.select :role_id, @roles %>
-                    </div>
-                  </div>
-                  
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="password">Your Password</label><br>
-                      <%= f.text_field :password, class: "form-control" %>
-                    </div>
-                  </div>
-                  
+                <div class="field">
+                    <label class="form-label" for="name">Name</label><br>
+                    <%= f.text_field :name, class: 'form-control'%><br>
+                </div>
+
+                <div class="field">
+                  <label class="form-label" for="mobile">Mobile</label><br>
+                  <%= f.text_field :mobile, class: 'form-control'%><br>
+                </div>
+
+                <div class="field">
+                  <label class="form-label" for="email">Email</label><br>
+                  <%= f.text_field :email, class: 'form-control'%><br>
+                </div><br>
+
+                <div class="field">
+                  <label class="form-label" for="role">Role</label><br>
+                  <%= f.select :role_id, @roles, class: 'form-select'%>
+                </div>
+                
+                <label class="form-label" for="social">Social Media</label><br>
+                <div class="field">
+                  <%= f.fields_for :socials do |form| %>
+                    <%= render 'social', f: form %>
+                  <% end %>
+                  <%= link_to_add_row('Add Social', f, :socials)%>
+                  <br><br>
+                </div>
+
+                <div class="field">
+                  <label class="form-label" for="password">Password</label><br>
+                  <%= f.text_field :password, class: 'form-control' %><br>
+                </div>
+
                   <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  
 <% end %>
 
 <script>
   function add_fields(link, association, content) {
     var new_id = new Date().getTime();
-    var regexp = new RegExp("new_" + association, "g");
-    $(link).before().parent().append(content.replace(regexp, new_id));
-    return event.preventDefault()
+    var regexp = new RegExp("new_" + association, "g")
+    $(link).parent().before(content.replace(regexp, new_id));
   }
 
   function remove_fields(link, association, content) {

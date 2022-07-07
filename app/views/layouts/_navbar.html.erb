@@ -14,12 +14,15 @@
     </ul>
   </div>
   <div class="row">
-    <div class="col">
+    <div class="col-sm">
       <% if user_signed_in? %>
         <h3><%= current_user.name %></h3>
       <% end %>
     </div>
-    <div class="col">
+    <div class="col-sm">
+      <%= link_to(image_tag(current_user.avatar.tiny_thumb.url, alt: 'Avatar', class: 'rounded-circle'), current_user.avatar.url, target: '_blank') if current_user.avatar? %>
+    </div>
+    <div class="col-sm">
       <%= link_to 'Logout', user_logout_path(current_user), data: { turbo_method: :delete }, class: 'btn btn-outline-danger' %>
     </div>
   </div>

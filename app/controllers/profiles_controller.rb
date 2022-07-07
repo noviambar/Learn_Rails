@@ -41,7 +41,7 @@ class ProfilesController < ApplicationController
   def update
     @profile = User.find(params[:id])
     
-    if @profile.update(profile_params)
+    if @profile.update!(profile_params)
       redirect_to profile_path, flash: { notice: 'Successfully Updated User' }
     else
       render :edit, status: :unprocessable_entity
@@ -58,6 +58,6 @@ class ProfilesController < ApplicationController
 
   private
   def profile_params
-    params.require(:user).permit(:id, :name, :mobile, :email, :avatar,:password, :role_id, socials_attributes: [:id, :name, :short, :_destroy])
+    params.require(:user).permit(:id, :name, :mobile, :email, :avatar,:password, :role_id, socials_attributes: [:id, :user_id, :name, :short, :_destroy])
   end
 end

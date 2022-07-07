@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   #nested attribtes
   has_many :socials, dependent: :destroy
-  accepts_nested_attributes_for :socials, allow_destroy: true
+  accepts_nested_attributes_for :socials, allow_destroy: true, reject_if: :all_blank
 
   validates :name, presence: true
   validates :mobile, presence: true, uniqueness: true, numericality: true

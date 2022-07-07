@@ -17,7 +17,7 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-              <%= link_to(image_tag(@profile.avatar.thumb.url, alt: 'Avatar'), @profile.avatar.url, target: '_blank') if @profile.avatar? %>
+              <%= link_to(image_tag(@profile.avatar.thumb.url, alt: 'Avatar',  class: 'img-thumbnail'), @profile.avatar.url, target: '_blank') if @profile.avatar? %>
             <h5 class="my-3"><%= @profile.name %></h5>
             <p class="text-muted mb-1"><%= @profile.role.name %></p>
             <div class="d-flex justify-content-center mb-2">
@@ -65,8 +65,8 @@
                   <i class="fa-brands fa-instagram-square"></i>
                   <ul>
                     <li>
-                      <p class="text-muted mb-0"><%= social.short %></p>
                       <p class="text-muted mb-0"><%= social.name %></p>
+                      <p class="text-muted mb-0"><%= social.short %></p>
                     </li>
                   </ul>
                 <% end %> 
