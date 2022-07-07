@@ -37,6 +37,13 @@ module ApplicationHelper
     link_to_function(name, "remove_fields(this)", class: 'btn btn-danger remove_fields', remote: true)
   end
 
+  #SORT TABLE
+  def sortable(column, title = nil)
+    title ||=column.titleize
+    direction = (column == params[:sort] && params[:direction] == "asc") ? "desc" : "asc"
+    link_to title, :sort => column, :direction => direction
+  end 
+
   #===========================================================================================================
   # def link_to_add_fields(name, f, association, **args)
   #   #create a new object given the form object, and the associattion name

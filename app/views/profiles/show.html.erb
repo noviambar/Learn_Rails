@@ -17,8 +17,7 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;">
+              <%= link_to(image_tag(@profile.avatar.thumb.url, alt: 'Avatar'), @profile.avatar.url, target: '_blank') if @profile.avatar? %>
             <h5 class="my-3"><%= @profile.name %></h5>
             <p class="text-muted mb-1"><%= @profile.role.name %></p>
             <div class="d-flex justify-content-center mb-2">
@@ -71,6 +70,23 @@
                     </li>
                   </ul>
                 <% end %> 
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Image</p>
+                </div>
+                <div class="col-sm-9">
+                  <i class="fa-solid fa-user"></i>
+                  <ul>
+                    <li>
+                      <%= form_with(model: @profile, url: {action: "update"}, data: { turbo: false }) do |f| %>
+                        <%= f.file_field :avatar, class: 'form-control' %><br>
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Upload</button>
+                      <% end %>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>

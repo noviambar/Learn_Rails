@@ -36,6 +36,9 @@ gem "turbolinks", "~> 5.2.1"
 #use fontawesom
 gem 'font_awesome5_rails'
 
+#use carrierwave for upload image
+gem 'carrierwave', '~> 2.0'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -53,6 +56,9 @@ gem "bootsnap", require: false
 
 #using kaminari for pagination
 gem 'kaminari'
+
+#use mini_magick for resize image
+gem 'mini_magick'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

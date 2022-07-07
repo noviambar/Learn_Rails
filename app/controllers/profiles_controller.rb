@@ -1,9 +1,14 @@
 class ProfilesController < ApplicationController
   def index
     @profiles = User.joins(:role)
+    @profiles =  User.order(params[:sort])
+    @roles = Role.order(params[:sort])
     @profile =  Social.joins(:user)
-    @paginates = @profiles.page(params[:page])
-    # @profiles = Kaminari.paginate_array(User.first(5)).page(params[:page])
+    unless @profiles.kind_of?(Array)
+      @profiles = @profiles.page(params[:page]).per(5)
+    else
+      @profiles = Kaminari.paginate_array(@profiles).page(params[:page]).per(5)
+    end
   end
 
   def new
@@ -18,6 +23,7 @@ class ProfilesController < ApplicationController
     if @profile.save
       redirect_to profiles_path, flash: { notice: "User successfuly added"}
     else
+      flash.now[:messages] = @profile.errors.full_messages[0]
       render :new
     end
   end
@@ -43,6 +49,7 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
+    @social = Social.find_by(params[:user_id])
     @profile = User.find(params[:id])
     @profile.destroy
   
@@ -51,6 +58,6 @@ class ProfilesController < ApplicationController
 
   private
   def profile_params
-    params.require(:user).permit(:id, :name, :mobile, :email, :password, :role_id, socials_attributes: [:id, :name, :short, :_destroy])
+    params.require(:user).permit(:id, :name, :mobile, :email, :avatar,:password, :role_id, socials_attributes: [:id, :name, :short, :_destroy])
   end
 end
