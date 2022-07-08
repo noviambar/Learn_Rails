@@ -81,7 +81,8 @@
                   <ul>
                     <li>
                       <%= form_with(model: @profile, url: {action: "update"}, data: { turbo: false }) do |f| %>
-                        <%= f.file_field :avatar, class: 'form-control' %><br>
+                        <%= f.file_field :avatar, class: 'form-control' %>
+                        <span class="dropzone-msg-desc">Max File Size: 1Mb, File Format: .png, .jpg, .jpeg, .gif</span><br>
                         <button class="btn btn-primary btn-lg btn-block" type="submit">Upload</button>
                       <% end %>
                     </li>

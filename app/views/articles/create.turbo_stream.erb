@@ -1,10 +1,7 @@
 <%= turbo_stream.update "articles" do %>
   <%= render 'article', article: @articles %>
 <% end %>
+
 <%= turbo_stream.replace "#{dom_id(Article.new)}_form" do %>
-  <% flash.each do |key, value| %>
-    <div class="alert <%= flash_class(key) %> alert-dismissible fade show text-center" role="alert">
-      <strong><%= value %></strong>
-    </div>
-  <% end %>
+  <%= render 'form', article: Article.new %>
 <% end %>

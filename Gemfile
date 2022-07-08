@@ -60,6 +60,9 @@ gem 'kaminari'
 #use mini_magick for resize image
 gem 'mini_magick'
 
+#use file_validator for validator image
+gem 'file_validators'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

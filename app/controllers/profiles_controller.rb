@@ -44,6 +44,7 @@ class ProfilesController < ApplicationController
     if @profile.update!(profile_params)
       redirect_to profile_path, flash: { notice: 'Successfully Updated User' }
     else
+      flash.now[:messages] = @profile.errors.full_messages[0]
       render :edit, status: :unprocessable_entity
     end
   end

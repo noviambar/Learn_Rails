@@ -7,29 +7,41 @@
             <div class="card-body p-md-5">
               <div class="row justify-content-center">
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">New User</p>
-                <% flash.each do |key, value| %>
-                  <div class="alert <%= flash_class(key) %> alert-dismissible fade show text-center" role="alert">
-                    <strong><%= value %></strong>
-                  </div>
-                <% end %>
+
                 <div class="field">
                     <label class="form-label" for="name">Name</label><br>
-                    <%= f.text_field :name, class: 'form-control'%><br>
+                    <%= f.text_field :name, class: 'form-control'%>
+                    <% @profile.errors.full_messages_for(:name).each do |message| %>
+											<div><%= message %></div>
+										<% end %>
+                    <br>
                 </div>
 
                 <div class="field">
                   <label class="form-label" for="mobile">Mobile</label><br>
-                  <%= f.text_field :mobile, class: 'form-control'%><br>
+                  <%= f.text_field :mobile, class: 'form-control'%>
+                  <% @profile.errors.full_messages_for(:mobile).each do |message| %>
+										<div><%= message %></div>
+									<% end %>
+                  <br>
                 </div>
 
                 <div class="field">
                   <label class="form-label" for="email">Email</label><br>
-                  <%= f.text_field :email, class: 'form-control'%><br>
+                  <%= f.text_field :email, class: 'form-control'%>
+                  <% @profile.errors.full_messages_for(:email).each do |message| %>
+										<div><%= message %></div>
+									<% end %>
+                  <br>
                 </div>
 
                 <div class="field">
                   <label class="form-label" for="role">Role</label><br>
-                  <%= f.select :role_id, @roles, class: 'form-select'%>
+                  <%= f.collection_select :role_id, Role.all, :id, :name %>
+                  <% @profile.errors.full_messages_for(:role_id).each do |message| %>
+										<div><%= message %></div>
+									<% end %>
+                  <br>
                 </div>
                 
                 <div class="field">
@@ -48,11 +60,20 @@
                 <div class="field">
                   <label class="form-label" for="avatar">Image</label><br>
                   <%= f.file_field :avatar, class: 'form-control'%>
+                  <span class="dropzone-msg-desc">Max File Size: 1Mb, File Format: .png, .jpg, .jpeg, .gif</span><br>
+                  <% @profile.errors.full_messages_for(:avatar).each do |message| %>
+										<div><%= message %></div>
+									<% end %>
+                  <br>
                 </div>
 
                 <div class="field">
                   <label class="form-label" for="password">Password</label><br>
-                  <%= f.text_field :password, class: 'form-control' %><br>
+                  <%= f.text_field :password, class: 'form-control' %>
+                  <% @profile.errors.full_messages_for(:password).each do |message| %>
+										<div><%= message %></div>
+									<% end %>
+                  <br>
                 </div>
                 
                   <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>

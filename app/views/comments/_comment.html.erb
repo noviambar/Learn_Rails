@@ -2,8 +2,9 @@
   <strong>Commenter: </strong>
   <%= comment.commenter %>
 </p>
-
 <p>
   <strong>Comment: </strong>
   <%= comment.body %>
 </p>
+<%= link_to "Delete", article_comment_path(comment), data: {turbo_method: :delete, turbo_confirm: "Are you Sure ?"}, class: 'btn btn-outline-danger'%>
+<hr>

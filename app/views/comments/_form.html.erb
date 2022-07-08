@@ -2,7 +2,7 @@
   <div class="form-outline mb-4">
     <label class="form-label" for="commenter">Commenter</label>
     <% if current_user %>
-      <%= form.text_field :commenter, class: 'form-control', value: current_user.name, disabled: true%>
+      <%= form.text_field :commenter, class: 'form-control', value: current_user.name%>
     <% end %>
   <div>
   <div class="form-outline mb-4">

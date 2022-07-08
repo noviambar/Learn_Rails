@@ -7,6 +7,11 @@ class ArticlesController < ApplicationController
   def index
       @articles = Article.search(params).joins(:user)
       @article = Article.new
+      unless @articles.kind_of?(Array)
+        @articles = @articles.page(params[:page]).per(3)
+      else
+        @articles = Kaminari.paginate_array(@articles).page(params[:page]).per(3)
+      end
   end
   
   #menampilkan article berdasarkan id
@@ -35,7 +40,8 @@ class ArticlesController < ApplicationController
         # format.js       
         # redirect_to @article
       else
-        format.html{ render action: "new", status: :unprocessable_entity}
+        flash.now[:messages] = @article.errors.full_messages[0]
+        format.html{ render :new, status: :unprocessable_entity}
         # render :new, status: :unprocessable_entity
       end
     end

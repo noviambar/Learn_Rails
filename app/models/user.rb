@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :mobile, presence: true, uniqueness: true, numericality: true
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :avatar, file_size: { less_than: 1.megabytes, message: "Image should be less than 1MB"}
 
   #using bcrypt
   has_secure_password
