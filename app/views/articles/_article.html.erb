@@ -13,19 +13,13 @@
       <tr>
         <td><%= index += 1 %></td>
         <td><%= article.user.name %></td>
-        <td><%= link_to article.title, article %></td>
+        <td><%= article.title %></td>
+        <td><%= article.status %></td>
         <td>
-          <% if article.status === "true" %>
-            Publish
-          <% else %>
-            Unpublish
-          <% end %>
-        </td>
-        <td>
-          <%= link_to "Show", article %>
-          <%= link_to "Edit", edit_article_path(article) %>
+          <%= link_to "Show", article, class: 'btn btn-primary' %>
+          <%= link_to "Edit", edit_article_path(article), class: 'btn btn-success' %>
           <%= link_to "Delete", article_path(article), data: {turbo_method: :delete,
-            turbo_confirm: "Are you Sure ?"}%>
+            turbo_confirm: "Are you Sure ?"}, class: 'btn btn-danger'%>
         </td>
       </tr>
     <% end %>

@@ -66,6 +66,7 @@ class ArticlesController < ApplicationController
   
   #hapus article
   def destroy
+    # @comment = Comment.find_by(params[:article_id])
     @article = Article.find(params[:id])
     @article.destroy
   
@@ -74,16 +75,18 @@ class ArticlesController < ApplicationController
 
   #form import file
   def import_items
-    
+    # @attachment = Article.new
   end
 
   #import file
   def import
-    result = Article.import(params[:attachment])
-    unless result == false
+    @result = Article.import(params[:attachment], current_user)
+  
+    # debugger
+    unless @result == false
       redirect_to root_path, flash: { notice: 'Item imported'}
     else
-      redirect_to import_items_items_path, flash: {notice: 'Data failed to import!'}
+      redirect_to root_path, flash: { warn: 'Unknown File Type!'}
     end
   end 
   

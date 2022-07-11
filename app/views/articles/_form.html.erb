@@ -35,7 +35,7 @@
   </div>
   <div class="form-outline mb-4">
     <label class="visually" for="status">Status</label>
-    <%= form.select :status, [['Publish', true], ['Unpublish', false]]%>
+    <%= form.select :status,['Publish', 'Unpublish', 'Pending'], class: "form-select"%>
   </div>
 <button class="btn btn-primary btn-lg btn-block" type="submit">Add</button>
 <% end %>
