@@ -37,7 +37,7 @@
 
                 <div class="field">
                   <label class="form-label" for="role">Role</label><br>
-                  <%= f.collection_select :role_id, Role.all, :id, :name %>
+                  <%= f.collection_select :role_id, Role.all, :id, :name, class: "form-select" %>
                   <% @profile.errors.full_messages_for(:role_id).each do |message| %>
 										<div><%= message %></div>
 									<% end %>

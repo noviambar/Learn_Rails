@@ -63,6 +63,12 @@ gem 'mini_magick'
 #use file_validator for validator image
 gem 'file_validators'
 
+# use roo for import file csv and excel
+gem 'roo'
+
+#use Select2 for search
+gem 'select2-rails'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

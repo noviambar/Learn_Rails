@@ -71,6 +71,21 @@ class ArticlesController < ApplicationController
   
     redirect_to root_path, status: :see_other
   end
+
+  #form import file
+  def import_items
+    
+  end
+
+  #import file
+  def import
+    result = Article.import(params[:attachment])
+    unless result == false
+      redirect_to root_path, flash: { notice: 'Item imported'}
+    else
+      redirect_to import_items_items_path, flash: {notice: 'Data failed to import!'}
+    end
+  end 
   
   private
     def article_params

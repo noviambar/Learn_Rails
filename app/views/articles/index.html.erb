@@ -12,11 +12,13 @@
       <%# Melakukan pencarian berdasarkan title dan berdasarkan status %>
       <%= form_tag(articles_path, method: 'get') do %>
         <div class="row">
-          <div class="col">
+          <div class="col-sm">
             <%= text_field_tag(:title, params[:title], type: 'search', class: "form-control mr-sm-2", placeholder: "Search by Tittle") %>
           </div>
-          <div class="col">
-            <%= select_tag :status,options_for_select([['Status'],["Publish", "true"], ["Unpublish", "false"]]), class: "btn btn-outline-secondary dropdown-toggle" %>
+          <div class="col-sm">
+            <%= select_tag :status,options_for_select([['Status'],["Publish", "true"], ["Unpublish", "false"]]), class: "form-select" %>
+          </div>
+          <div class="col-sm">
             <button type="submit" class="btn btn-success">Search</button>
           </div>
         </div>
@@ -38,6 +40,13 @@
         <div class="card-body" id="articles">
           <%= render @article %>
         <div>
+      </div>
+      <br>
+      <div class="card">
+        <div class="card-body">
+         
+         <%= render 'import_items' %>
+        </div>
       </div>
     </div>
   </div>

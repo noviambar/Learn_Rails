@@ -24,6 +24,10 @@ Rails.application.routes.draw do
 
   #articles
   resources :articles do
+    collection do
+    get :import_items
+    post :import
+    end
     resources :comments
   end
 

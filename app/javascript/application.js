@@ -7,6 +7,7 @@ import "@fortawesome/fontawesome-free"; // => https://ga.jspm.io/npm:@fortawesom
 //= require_tree .
 //= require_self
 //= require turbolinks
+//= require select2
 
 $(document).ready(function () {
   // alert("tes");
