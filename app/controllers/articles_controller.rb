@@ -6,6 +6,10 @@ class ArticlesController < ApplicationController
   #menampilkan semua article
   def index
       @articles = Article.search(params).joins(:user)
+      respond_to do |format| 
+        format.html
+        format.xlsx
+      end
       @article = Article.new
       unless @articles.kind_of?(Array)
         @articles = @articles.page(params[:page]).per(3)

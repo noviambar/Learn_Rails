@@ -66,6 +66,9 @@ gem 'file_validators'
 # use roo for import file csv and excel
 gem 'roo'
 
+#use axlsx for export file
+gem 'axlsx_rails'
+
 #use Select2 for search
 gem 'select2-rails'
 
