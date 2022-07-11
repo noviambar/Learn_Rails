@@ -5,9 +5,9 @@ class ProfilesController < ApplicationController
     @roles = Role.order(params[:sort])
     @profile =  Social.joins(:user)
     unless @profiles.kind_of?(Array)
-      @profiles = @profiles.page(params[:page]).per(5)
+      @profiles = @profiles.page(params[:page]).per(3)
     else
-      @profiles = Kaminari.paginate_array(@profiles).page(params[:page]).per(5)
+      @profiles = Kaminari.paginate_array(@profiles).page(params[:page]).per(3)
     end
   end
 
