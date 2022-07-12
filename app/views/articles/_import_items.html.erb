@@ -1,9 +1,4 @@
 <h3> Import Item </h3>
-<% flash.each do |key, value| %>
-  <div class="alert <%= flash_class(key) %> alert-dismissible fade show text-center" role="alert">
-    <strong><%= value %></strong>
-  </div>
-<% end %>
 <hr>
 <%= form_tag(import_articles_path, multipart: true, id: "import_items_form", remote: true, data: { turbo: false }) do %>
   <%= label_tag :attachment %><br>

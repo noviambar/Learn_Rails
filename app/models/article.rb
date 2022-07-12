@@ -7,10 +7,10 @@ class Article < ApplicationRecord
   
   #untuk melakukan pencarian
   def self.search(params)
-    if params[:status] == "true"
-      article = self.where(['status LIKE ?', true])
-    elsif params[:status] == "false"
-      article = self.where(['status LIKE ?', false])
+    if params[:status] == "Publish"
+      article = self.where(['status LIKE ?', "Publish"])
+    elsif params[:status] == "Unpublish"
+      article = self.where(['status LIKE ?', "Unpublish"])
     elsif params[:title]
       article = self.where(['title LIKE ?', "%#{params[:title]}%"])
     else
@@ -29,20 +29,6 @@ class Article < ApplicationRecord
       article.user = user
       article.save!
     end
-    # spreadsheet = self.open_spreadsheet(attachment)
-    # if spreadsheet
-    #   header = spreadsheet.row(1)
-    #   (2..spreadsheet.last_row).each do |i|
-    #     begin
-    #       row = Hash[[header, spreadsheet.row(i)].transpose]
-    #       self.find_or_create_item(row)
-    #     rescue => e
-    #       Rails.logger.info "Error when importing : #{e.inspect}"
-    #     end
-    #   end
-    # else
-    #   false
-    # end
   end
 
   def self.find_or_create_item(row)

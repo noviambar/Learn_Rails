@@ -5,12 +5,13 @@ class ArticlesController < ApplicationController
 
   #menampilkan semua article
   def index
-      @articles = Article.search(params).joins(:user)
+      @articles = Article.search(params)
+      @articles = @articles.joins(:user)
+      @article = Article.new
       respond_to do |format| 
         format.html
         format.xlsx
       end
-      @article = Article.new
       unless @articles.kind_of?(Array)
         @articles = @articles.page(params[:page]).per(3)
       else
@@ -31,22 +32,17 @@ class ArticlesController < ApplicationController
   
   #membuat article baru
   def create 
-    @article = Article.new(article_params)
+    # @article = Article.new(article_params)
+    @article = ArticleCreate.new(article_params).create_article #call method from services
 
-    # debugger
     respond_to do |format|
       if @article.save
         @articles = Article.all
         format.turbo_stream
         format.html {redirect_to root_path(@article), notice: 'Article successfuly created'}
-        
-        # format.html {redirect_to root_path(@article), notice: 'Article successfuly created'}
-        # format.js       
-        # redirect_to @article
       else
         flash.now[:messages] = @article.errors.full_messages[0]
         format.html{ render :new, status: :unprocessable_entity}
-        # render :new, status: :unprocessable_entity
       end
     end
     

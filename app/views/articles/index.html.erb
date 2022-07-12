@@ -6,7 +6,11 @@
 
   <div class="row">
     <div class="col">
-     
+      <% flash.each do |key, value| %>
+        <div class="alert <%= flash_class(key) %> alert-dismissible fade show text-center" role="alert">
+          <strong><%= value %></strong>
+        </div>
+      <% end %>
     </div>
     <div class="col-4">
       <%# Melakukan pencarian berdasarkan title dan berdasarkan status %>
@@ -16,7 +20,7 @@
             <%= text_field_tag(:title, params[:title], type: 'search', class: "form-control mr-sm-2", placeholder: "Search by Tittle") %>
           </div>
           <div class="col-sm">
-            <%= select_tag :status,options_for_select([['Status'],["Publish", "true"], ["Unpublish", "false"]]), class: "form-select" %>
+            <%= select_tag :status, options_for_select([['Status'],["Publish", "Publish"], ["Unpublish", "Unpublish"]]), class: "form-select" %>
           </div>
           <div class="col-sm">
             <button type="submit" class="btn btn-success">Search</button>
