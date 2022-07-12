@@ -8,14 +8,14 @@ class ArticlesController < ApplicationController
       @articles = Article.search(params)
       @articles = @articles.joins(:user)
       @article = Article.new
-      respond_to do |format| 
-        format.html
-        format.xlsx
-      end
       unless @articles.kind_of?(Array)
         @articles = @articles.page(params[:page]).per(3)
       else
         @articles = Kaminari.paginate_array(@articles).page(params[:page]).per(3)
+      end
+      respond_to do |format| 
+        format.html
+        format.xlsx
       end
   end
   

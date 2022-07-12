@@ -8,7 +8,7 @@ class ArticleCreate
 
   def create_article
     Article.create!(
-      title: @title,
+      title: title,
       body: @body,
       user_id: @user_id,
       status: @status
