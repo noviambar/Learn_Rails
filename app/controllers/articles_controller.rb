@@ -5,18 +5,18 @@ class ArticlesController < ApplicationController
 
   #menampilkan semua article
   def index
-      @articles = Article.search(params)
-      @articles = @articles.joins(:user)
-      @article = Article.new
-      unless @articles.kind_of?(Array)
-        @articles = @articles.page(params[:page]).per(3)
-      else
-        @articles = Kaminari.paginate_array(@articles).page(params[:page]).per(3)
-      end
-      respond_to do |format| 
-        format.html
-        format.xlsx
-      end
+    @articles = Article.search(params)
+    @articles = @articles.joins(:user)
+    respond_to do |format| 
+      format.html
+      format.xlsx
+    end
+    @article = Article.new
+    unless @articles.kind_of?(Array)
+      @articles = @articles.page(params[:page]).per(3) unless request.format == 'xlsx'  #does pagination if not xlsx format
+    else
+      @articles = Kaminari.paginate_array(@articles).page(params[:page]).per(3) unless request.format == 'xlsx'
+    end
   end
   
   #menampilkan article berdasarkan id
@@ -33,7 +33,7 @@ class ArticlesController < ApplicationController
   #membuat article baru
   def create 
     # @article = Article.new(article_params)
-    @article = ArticleCreate.new(article_params).create_article #call method from services
+    @article = CreateArticle::ArticleCreate.new(article_params).create_article #call method from services
 
     respond_to do |format|
       if @article.save
@@ -70,7 +70,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @article.destroy
   
-    redirect_to root_path, status: :see_other
+    redirect_to root_path, status: :see_other, flash: { notice: 'Article Deleted Successfully'}
   end
 
   #form import file

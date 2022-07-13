@@ -67,7 +67,8 @@ gem 'file_validators'
 gem 'roo'
 
 #use axlsx for export file
-gem 'axlsx_rails'
+gem 'caxlsx'
+gem 'caxlsx_rails'
 
 #use Select2 for search
 gem 'select2-rails'
