@@ -19,7 +19,7 @@ module CreateArticle
 
     private
     def article_params
-      params.require(:article).permit(:user_id, :title, :body, :status)
+      params.permit(:user_id, :title, :body, :status)
     end
   end
 end

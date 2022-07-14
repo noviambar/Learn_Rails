@@ -22,6 +22,21 @@ Rails.application.routes.draw do
   #profile
   resources :profiles
 
+  #articles API
+  namespace :api do
+    namespace :v1 do
+      resources :articles
+    end
+  end
+
+  #login and register API
+  namespace :api do
+    namespace :v1 do
+     resources :profiles
+     post '/auth/login', to: 'auth#login'
+    end
+  end
+
   #articles
   resources :articles do
     collection do

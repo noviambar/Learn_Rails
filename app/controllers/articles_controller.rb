@@ -22,6 +22,7 @@ class ArticlesController < ApplicationController
   #menampilkan article berdasarkan id
   def show
     @article = Article.find(params[:id])
+    
   end
   
   #membuat form tambah article

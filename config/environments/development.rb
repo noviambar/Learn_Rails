@@ -11,6 +11,12 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  #render an HTML
+  # config.debug_exception_response_format = :default
+
+  #render rails to API
+  # config.debug_exception_response_format = :api
+
   # Show full error reports.
   config.consider_all_requests_local = true
 

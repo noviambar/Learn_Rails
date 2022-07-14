@@ -23,7 +23,7 @@ module ApplicationHelper
     # new_object = f.object.send(association).klass.new
     new_object = f.object.class.reflect_on_association(association).klass.new
     id = new_object.object_id
-    fields = f.fields_for(association, new_object, child_index: id) do |builder|
+    fields = f.fields_for(association, new_object, child_index: "new_#{association}") do |builder|
       render(association.to_s.singularize, f: builder)
     end
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", class: 'add_fields btn btn-success', remote: true)

@@ -1,16 +1,15 @@
 <fieldset>
-  <ul>
-    <li>
-      <%= link_to_remove_fields "Remove", "#", class: "remove_fields"%>
-    </li>
-    <li>
-      <%= f.text_field :name, class: 'form-control', placeholder: 'Username' %>
-    </li>
-    <li>
+  <div class="row">
+    <div class="col">
       <%= f.text_field :short, class: 'form-control', placeholder: 'Name Social Media' %>
-    </li>
-    <li>
-       <%= f.check_box :_destroy %>
-    </li>
-  </ul>
+    </div>
+    <div class="col">
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Username' %>
+    </div>
+    <div class="col">
+      <%= f.hidden_field :_destroy %>
+      <%= link_to_remove_fields "Remove", "#", class: "remove_fields(this)"%>
+    </div>
+  </div>
+  <br>
 </fieldset>
