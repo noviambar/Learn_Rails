@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
     respond_to do |format| 
       format.html
       format.xlsx
+      ExportJob.perform_later
     end
     @article = Article.new
     unless @articles.kind_of?(Array)
@@ -81,7 +82,10 @@ class ArticlesController < ApplicationController
 
   #import file
   def import
-    @result = Article.import(params[:attachment], current_user)
+    # @result = Article.import(params[:attachment], current_user)
+
+    @result = ImportJob.perform_now(params[:attachment], current_user)
+    
   
     # debugger
     unless @result == false

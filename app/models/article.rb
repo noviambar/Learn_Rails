@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
 
-  include ImportSearch
-  
+  include ArticleSearch
+
   has_many :comment
   belongs_to :user, optional: true
 

@@ -76,6 +76,9 @@ gem 'caxlsx_rails'
 #use Select2 for search
 gem 'select2-rails'
 
+#use sidekiq for background process
+gem "sidekiq"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

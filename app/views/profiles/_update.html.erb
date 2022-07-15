@@ -31,8 +31,12 @@
                   <label class="form-label" for="role">Role</label><br>
                   <%= f.select :role_id, @roles, class: 'form-select'%>
                 </div>
+                                
+                <div class="field">
+                  <br>
+                  <label class="form-label" for="social">Social Media</label><br>
+                </div>
                 
-                <label class="form-label" for="social">Social Media</label><br>
                 <div class="field">
                   <%= f.fields_for :socials do |form| %>
                     <%= render 'social', f: form %>
