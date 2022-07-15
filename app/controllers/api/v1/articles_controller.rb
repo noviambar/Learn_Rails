@@ -1,7 +1,7 @@
 module Api
   module V1
     class ArticlesController < ApiController
-      before_action :authentication, except: [:create]
+      before_action :authentication
       
       skip_before_action :verify_authenticity_token
 
@@ -30,7 +30,9 @@ module Api
 
       def create
         # @article = CreateArticle::ArticleCreate.new(article_params).create_article
-        @article = Article.new(article_params)
+        if authentication         
+          @article = Article.where(:user_id => @current_user.id).new(article_params)
+        end 
 
         if @article.save
           render json: @article, status: :created
