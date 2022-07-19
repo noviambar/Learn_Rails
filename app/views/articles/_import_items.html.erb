@@ -1,6 +1,6 @@
 <h3> Import Item </h3>
 <hr>
-<%= form_tag(import_articles_path, multipart: true, id: "import_items_form", remote: true, data: { turbo: false }) do %>
+<%= form_tag(import_articles_path, multipart: true, id: "import_items_form") do %>
   <%= label_tag :attachment %><br>
   <%= file_field_tag :attachment, class: 'form-control' %>
   <span> Attachment that allow to input are .csv, .xlsx, .xlx</span>

@@ -40,8 +40,10 @@ Rails.application.routes.draw do
   #articles
   resources :articles do
     collection do
-    get :import_items
-    post :import
+      get :import_items
+      post :import
+      require 'sidekiq/web'
+      mount Sidekiq::Web => '/sidekiq'
     end
     resources :comments
   end

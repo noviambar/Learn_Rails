@@ -9,8 +9,13 @@ class ArticlesController < ApplicationController
     @articles = @articles.joins(:user)
     respond_to do |format| 
       format.html
-      format.xlsx
-      ExportJob.perform_later
+      format.xlsx do 
+        job_id = ExportJob.perform_async
+
+        render json: {
+          jid: job_id
+        }
+      end
     end
     @article = Article.new
     unless @articles.kind_of?(Array)
@@ -82,13 +87,13 @@ class ArticlesController < ApplicationController
 
   #import file
   def import
-    # @result = Article.import(params[:attachment], current_user)
-
-    @result = ImportJob.perform_now(params[:attachment], current_user)
+    # @article = CreateArticle::ImportArticle.import(params[:attachment], current_user)
+    @filename = Article.open_spreadsheet(params[:attachment])
+    debugger
+    ImportJob.perform_async(@filename, current_user)
     
-  
     # debugger
-    unless @result == false
+    unless @article == false
       redirect_to root_path, flash: { notice: 'Item imported'}
     else
       redirect_to root_path, flash: { warn: 'Unknown File Type!'}
