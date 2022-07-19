@@ -89,7 +89,7 @@ class ArticlesController < ApplicationController
   def import
     # @article = CreateArticle::ImportArticle.import(params[:attachment], current_user)
     @filename = Article.open_spreadsheet(params[:attachment])
-    debugger
+    # debugger
     ImportJob.perform_async(@filename, current_user)
     
     # debugger
